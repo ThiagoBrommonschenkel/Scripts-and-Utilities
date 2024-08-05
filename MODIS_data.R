@@ -1,7 +1,7 @@
 ########## This script was created by Thiago Brommonschenkel, modifying and ######### 
 ######### applying functions from the MODISTools package (Koen Hufkens, 2023)######### 
 ######### to download data from NASA's MODIS platform.######### 
-######### for questions and suggestions: Thiago.brommonschenkel@gmail.com #########  
+######### For questions and suggestions: Thiago.brommonschenkel@gmail.com #########  
 
 # Downloading packages if necessary
 if (!require("MODISTools")) install.packages("MODISTools")
@@ -10,6 +10,10 @@ if (!require("dplyr")) install.packages("dplyr")
 # Loading the packages
 library(MODISTools)
 library(dplyr)
+
+# Setting options 
+product = 'MYD13Q1'
+band = "250m_16_days_NDVI"
 
 # Function to check data availability
 check_data_availability <- function(product, lat, lon, start, end) {
@@ -21,6 +25,7 @@ check_data_availability <- function(product, lat, lon, start, end) {
   available_dates <- as.Date(dates$calendar_date)
   return(any(available_dates >= start & available_dates <= end))
 }
+
 
 # Function to download MODIS data for each environment
 download_modis <- function(df, product, band) {
@@ -48,7 +53,7 @@ download_modis <- function(df, product, band) {
   return(do.call(rbind, results))
 }
 
-#To see the bands and products available
+# To see the bands and products available
 bands = mt_bands()
 products = mt_products()
 
