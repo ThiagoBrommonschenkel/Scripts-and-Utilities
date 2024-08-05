@@ -1,6 +1,6 @@
 ##### This script was created by Gabriel Blasques and modified by Thiago Brommonschenkel.#####
 generate_grid <- function(resolution, state = NULL, country = NULL, shapefile_path = NULL, save = FALSE, plot = FALSE) {
-  start_time <- sys.time() # Inicio da medição do tempo
+  start_time <- Sys.time() # Inicio da medição do tempo
   # Loading packages
   required_packages <- c("sf", "dplyr", "rnaturalearth", "ggplot2", "geobr")
   sapply(required_packages, function(pkg) {
